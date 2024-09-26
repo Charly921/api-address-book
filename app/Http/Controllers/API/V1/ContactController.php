@@ -24,7 +24,7 @@ class ContactController extends Controller
     {
         return response()->json([
             'data' => $this->contactRepository->getAllContacts()
-        ]);
+        ], Response::HTTP_ACCEPTED);
     }
 
     /**
@@ -49,6 +49,16 @@ class ContactController extends Controller
     {
         return response()->json([
             'data' => $this->contactRepository->getContactsById($id)
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function details(int $id): JsonResponse
+    {
+        return response()->json([
+            'data' => $this->contactRepository->getContactDetailsById($id)
         ]);
     }
 

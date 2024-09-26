@@ -17,6 +17,16 @@ class ContactRepository implements ContactRepositoryInterface
         return Contact::findOrFail($contactId);
     }
 
+    public function getContactDetailsById($contactId){
+        $contact = Contact::findOrFail($contactId);
+        $data = [];
+        $data['contact'] = $contact;
+        $data['phones'] = $contact->phones;
+        $data['emails'] = $contact->emails;
+        $data['addresses'] = $contact->addresses;
+        return $data;
+    }
+
     public function deleteContact($contactId) 
     {
         Contact::destroy($contactId);
